@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-namespace String.Util
+namespace Dev.Util.String
 {
      public static class StringExtension
     {
-       // Convert Whitespaces to  To Single Space
+      
         public static string ToSingleSpace(this string val)
         {
 			if (val == null)
