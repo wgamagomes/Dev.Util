@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Reflection;
 
 namespace Dev.Util.Enum
@@ -19,15 +21,15 @@ namespace Dev.Util.Enum
 
             if (!typeof(TEnum).IsEnum)
                 throw new ArgumentException($"The current type of {nameof(TEnum)} should be an enumeration.");
-            
+
 
             FieldInfo fieldInfo = typeof(TEnum).GetField(value.ToString());
 
             var attributes = (DescriptionAttribute[])fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false);
 
-            if (attributes == null || attributes.Length == 0)            
+            if (attributes == null || attributes.Length == 0)
                 throw new ArgumentException($"The argument {nameof(value)} of type {typeof(TEnum).FullName} doesn't have a Description decorator attribute set.");
-            
+
             return attributes[0].Description;
 
         }
@@ -52,6 +54,14 @@ namespace Dev.Util.Enum
             }
 
             return (TEnum)System.Enum.Parse(typeof(TEnum), value.ToString());
+        }
+
+        public static IEnumerable<TEnum> FlagsToCollection<TEnum>(this TEnum flags)
+        {
+            return flags
+                    .ToString()
+                    .Split(new string[] { ", " }, StringSplitOptions.RemoveEmptyEntries)
+                    .Select(f => f.Parse<TEnum>());
         }
     }
 }
