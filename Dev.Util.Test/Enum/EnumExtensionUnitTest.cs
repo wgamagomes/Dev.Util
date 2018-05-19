@@ -1,16 +1,21 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Dev.Util.Enum;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace Dev.Util.Test.Enum
 {
     [TestClass]
-    class EnumExtensionUnitTest
+    public class EnumExtensionUnitTest
     {
-
+        [TestMethod]
+        public void WhenTheParameterIsAnEnumWithDescriptionAttributeThenShouldGetTheDescriptionStoredInThisAttribute()
+        {   
+            Assert.AreEqual("UNDEFINED", EnumExtension.Description(Foo.Undefined));
+            Assert.AreEqual("FOO", EnumExtension.Description(Foo.foo));
+            Assert.AreEqual("BAR", EnumExtension.Description(Foo.bar));
+        }
     }
 }
-
-
 
 [Flags]
 public enum Foo
