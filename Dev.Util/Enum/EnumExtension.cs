@@ -9,7 +9,7 @@ namespace Dev.Util.Enum
     public static class EnumExtension
     {
         /// <summary>
-        ///  Gets the description stored in the description attribute of enumeration.
+        ///  Gets the description stored in the DescriptionAttribute of enumeration.
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
