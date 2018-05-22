@@ -1,0 +1,5 @@
+  
+test:
+  assemblies:
+  - Dev.Util.Test.dll
+  
