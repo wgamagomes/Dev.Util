@@ -19,7 +19,7 @@ namespace Dev.Util.Test.Enum
         [TestMethod]
         public void AppVeyorTest()
         {
-          
+            throw new Exception();
         }
     }
 }
