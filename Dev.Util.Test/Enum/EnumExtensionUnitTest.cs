@@ -14,6 +14,13 @@ namespace Dev.Util.Test.Enum
             Assert.AreEqual("FOO", EnumExtension.Description(Foo.foo));
             Assert.AreEqual("BAR", EnumExtension.Description(Foo.bar));
         }
+
+
+        [TestMethod]
+        public void AppVeyorTest()
+        {
+          
+        }
     }
 }
 
