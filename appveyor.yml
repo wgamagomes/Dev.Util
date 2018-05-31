@@ -29,7 +29,7 @@ test_script:
   - cmd: dotnet restore 
   # run the unit tests (requires changing into the test directory)
   - cmd: cd Dev.Util.Test
-  - cmd: dotnet nunit
+  - cmd: dotnet test
 on_finish :
   # any cleanup in here
 deploy: off
