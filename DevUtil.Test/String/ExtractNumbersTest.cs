@@ -10,20 +10,22 @@ namespace DevUtil.Test.String
         [TestMethod]
         public void WhenTheSourceStringContainsNumbersThenOnlyNumbersShouldBeReturnedAsOutput()
         {
-            Assert.AreEqual("234678", StringExtension.ExtractNumbers("!234Qwer%678Tyui"));
+            string input = "!234Qwer%678Tyui";
+            Assert.AreEqual("234678", input.ExtractNumbers());
         }
 
         [TestMethod]
         public void WhenTheSourceStringDoesNotContainNumbersThenAStringEmptyShouldBeReturnedAsOutput()
         {
-            Assert.AreEqual(string.Empty, StringExtension.ExtractNumbers("La Casa De Papel"));
+            string input = "La Casa De Papel";
+            Assert.AreEqual(string.Empty, input.ExtractNumbers());
         }
 
         [TestMethod]
         public void WhenTheSourceIsANullInstanceThenAnArgumentNullExceptionShouldBeThrown()
         {
             string input = null;         
-            Assert.ThrowsException<ArgumentNullException>(() => StringExtension.ExtractNumbers(input));
+            Assert.ThrowsException<ArgumentNullException>(() => input.ExtractNumbers());
         } 
     }
 }

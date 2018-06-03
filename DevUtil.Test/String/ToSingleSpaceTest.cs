@@ -7,19 +7,27 @@ using System.Text;
 namespace DevUtil.Test.String
 {
     [TestClass]
-    public class ToSingleSpaceTest
+    public class ToTitleCaseTest
     {
         [TestMethod]
-        public void WhenTheSourceStringContainsMultipleSpacesThenAStringWithSingleSpacesShouldBeReturnedAsOutput()
+        public void WhenTheSourceStringIsNotInTitleCaseThenAStringConvertedToTitleCaseShouldBeReturned()
         {
-            Assert.AreEqual("La Casa De Papel", StringExtension.ToSingleSpace("La    Casa  De Papel"));
+            string input = "la casa de papel";
+            Assert.AreEqual("La Casa De Papel", input.ToTitleCase());
+        }
+
+        [TestMethod]
+        public void WhenTheSourceStringIsAnAcronymsThenTheSametringShouldBeReturned()
+        {
+            string input = "SOLID";
+            Assert.AreEqual("SOLID", input.ToTitleCase());
         }
 
         [TestMethod]
         public void WhenTheSourceIsANullInstanceThenAnArgumentNullExceptionShouldBeThrown()
         {
             string input = null;
-            Assert.ThrowsException<ArgumentNullException>(() => StringExtension.ToSingleSpace(input));
+            Assert.ThrowsException<ArgumentNullException>(() => input.ToTitleCase());
         }
     }
 }
