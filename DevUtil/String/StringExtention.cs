@@ -139,12 +139,7 @@ namespace DevUtil.String
                 .ToTitleCase()
                 .ToSingleSpace();
 
-
-            
-            var stringArray = input.Split(' ');
-            stringArray[0] = stringArray[0].ToLower();
-
-            return string.Concat(stringArray);
+            return $"{char.ToLowerInvariant(input[0])}{input.Substring(1)}";
         }
 
         public static string ToPascalCase(this string input)
@@ -154,8 +149,7 @@ namespace DevUtil.String
 
            return input
                 .ToLower() //for words that are entirely in uppercase, should not consider as an acronym
-                .ToTitleCase()
-                .ToSingleSpace()
+                .ToTitleCase()                
                 .Replace(" ", string.Empty);           
         }
 
