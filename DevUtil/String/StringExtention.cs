@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -83,6 +84,30 @@ namespace DevUtil.String
             encoding = encoding ?? Encoding.Default;
 
             return encoding.GetString(Convert.FromBase64String(input));
+        }
+
+        /// <summary>
+        /// Removes diacritical marks, such as the acute (´) and grave (`)
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string RemoveDiacriticsMarks(this string input)
+        {
+            if (input == null)
+                throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
+
+            var normalizedString = input.Normalize(NormalizationForm.FormD).ToList();
+            var stringBuilder = new StringBuilder();
+
+            normalizedString.ForEach(c =>
+            {
+                var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                    stringBuilder.Append(c);
+            });
+
+            return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
     }
