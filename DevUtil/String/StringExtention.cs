@@ -135,9 +135,13 @@ namespace DevUtil.String
             if (input == null)
                 throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
 
+            if (input.Length == 0)
+                return input;
+
             input = input
-                .ToTitleCase()
-                .Replace(" ", string.Empty);
+            .ToLower() //for words that are entirely in uppercase, should not consider as an acronym
+            .ToTitleCase()
+            .Replace(" ", string.Empty);
 
             return $"{char.ToLowerInvariant(input[0])}{input.Substring(1)}";
         }
@@ -147,10 +151,10 @@ namespace DevUtil.String
             if (input == null)
                 throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
 
-           return input
-                .ToLower() //for words that are entirely in uppercase, should not consider as an acronym
-                .ToTitleCase()                
-                .Replace(" ", string.Empty);           
+            return input
+                 .ToLower() //for words that are entirely in uppercase, should not consider as an acronym
+                 .ToTitleCase()
+                 .Replace(" ", string.Empty);
         }
 
     }
