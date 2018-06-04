@@ -137,7 +137,7 @@ namespace DevUtil.String
 
             input = input
                 .ToTitleCase()
-                .ToSingleSpace();
+                .Replace(" ", string.Empty);
 
             return $"{char.ToLowerInvariant(input[0])}{input.Substring(1)}";
         }
