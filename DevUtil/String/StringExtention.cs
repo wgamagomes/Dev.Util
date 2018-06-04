@@ -110,5 +110,54 @@ namespace DevUtil.String
             return stringBuilder.ToString().Normalize(NormalizationForm.FormC);
         }
 
+        public static bool IsWhiteSpace(this string input)
+        {
+            if (input == null)
+                throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
+
+            if (input.Length == 0)
+                return false;
+
+
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (!char.IsWhiteSpace(input[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public static string ToCamelCase(this string input)
+        {
+            if (input == null)
+                throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
+
+            input = input
+                .ToTitleCase()
+                .ToSingleSpace();
+
+
+            
+            var stringArray = input.Split(' ');
+            stringArray[0] = stringArray[0].ToLower();
+
+            return string.Concat(stringArray);
+        }
+
+        public static string ToPascalCase(this string input)
+        {
+            if (input == null)
+                throw new ArgumentNullException($"The parameter {nameof(input)} can't be null.");
+
+           return input
+                .ToLower() //for words that are entirely in uppercase, should not consider as an acronym
+                .ToTitleCase()
+                .ToSingleSpace()
+                .Replace(" ", string.Empty);           
+        }
+
     }
 }
